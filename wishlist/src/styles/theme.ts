@@ -5,6 +5,7 @@ export default {
   bakcgroundPurple: "#4A1259",
   borderBlue: "#007FBF",
   borderGreen: "#25E9B9",
+  deleteColor: "#E74C3C",
 
   fonts: {
     lightMontserratItalic: "Montserrat_300Light_Italic",
