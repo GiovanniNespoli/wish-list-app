@@ -27,13 +27,10 @@ export default function HomeScreen({ navigation }) {
         <VideoContent>
           <VideoPlayer
             ref={video}
-            source={{
-              uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-            }}
+            source={require("../../../assets/video.mp4")}
             useNativeControls
             resizeMode={ResizeMode.CONTAIN}
             isLooping
-            shouldPlay
             onPlaybackStatusUpdate={(status) => setStatus(() => status)}
           />
         </VideoContent>
