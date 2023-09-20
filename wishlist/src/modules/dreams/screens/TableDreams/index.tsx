@@ -14,61 +14,20 @@ import {
   Title,
 } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
-
-interface IData {
-  id: string;
-  title: string;
-  description: string;
-}
+import { useDreams } from "../../hooks/dreams";
+import { Audio } from "expo-av";
 
 export default function TableDreamScreen({ navigation }) {
-  const [items, setItems] = useState<IData[]>([
-    {
-      id: "1",
-      title: "titulo12",
-      description: "descriocao12",
-    },
-    {
-      id: "2",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-    {
-      id: "3",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-    {
-      id: "4",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-    {
-      id: "5",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-    {
-      id: "6",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-    {
-      id: "7",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-    {
-      id: "8",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-    {
-      id: "9",
-      title: "titulo1",
-      description: "descriocao1",
-    },
-  ]);
+  const { dreamsList, deleteDreamHandler } = useDreams();
+
+  async function playSound() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../../../assets/bad.mp3")
+    );
+
+    await sound.playAsync();
+  }
 
   return (
     <Container
@@ -80,7 +39,7 @@ export default function TableDreamScreen({ navigation }) {
         <Title>Sua lista de sonhos</Title>
         <FlatListContent>
           <StyledFlatList
-            data={items}
+            data={dreamsList}
             showsVerticalScrollIndicator={false}
             renderItem={({ item, index }) => (
               <TableContent key={item.id}>
@@ -93,11 +52,8 @@ export default function TableDreamScreen({ navigation }) {
                 <TableLabel size={10}>
                   <DeleteContent
                     onPress={() => {
-                      const deleteData = items.filter(
-                        (value) => value.id !== item.id
-                      );
-
-                      setItems(deleteData);
+                      playSound();
+                      deleteDreamHandler(item.id);
                     }}
                   >
                     <MaterialIcons

@@ -48,10 +48,11 @@ export const TableLabel = styled.View<{ size: number }>`
   background-color: ${theme.primary};
   border-radius: 7px;
   align-items: center;
+  justify-content: center;
 `;
 
 export const TableText = styled.Text`
-  font-size: 24px;
+  font-size: 15px;
 `;
 
 export const DeleteContent = styled.TouchableOpacity`
